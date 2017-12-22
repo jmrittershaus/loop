@@ -1,0 +1,791 @@
+402.203.0: 0x80070057 (WIN32: 87): ..CertCli Version
+
+Befehle:
+  -dump             -- Bildet Konfigurationsinformationen oder -dateien ab.
+
+  -decodehex        -- Decodiert eine hexadezimal-codierte Datei.
+  -decode           -- Decodiert eine Base64-codierte Datei.
+  -encode           -- Codiert eine Datei mit Base64.
+
+  -deny             -- Verweigert die ausstehende Anforderung.
+  -resubmit         -- Übermittelt die ausstehende Anforderung erneut.
+  -setattributes    -- Legt Attribute für die ausstehende Anforderung fest.
+  -setextension     -- Legt Erweiterung für die ausstehende Anforderung fest.
+  -revoke           -- Sperrt das Zertifikat.
+  -isvalid          -- Zeigt die aktuelle Zertifikatdisposition an.
+
+  -getconfig        -- Ermittelt die Standardkonfiguration.
+  -ping             -- Sendet Signal z. Anf.-schnittst. der Zertifikatdienste.
+  -pingadmin        -- Sendet Signal z. Verw.-schnittst. der Zertifikatdienste.
+  -CAInfo           -- Zertifizierungsstellen-Informationen anzeigen
+  -ca.cert          -- Ruft das Zertifizierungsstellenzertifikat ab.
+  -ca.chain         -- Ruft die Zertifizierungsstellen-Zertifikatkette ab.
+  -GetCRL           -- Ruft die Sperrliste ab.
+  -CRL              -- Veröffentlicht neue Sperrlisten [bzw. nur Deltasperrl.].
+  -shutdown         -- Fährt die Zertifikatdienste herunter.
+
+  -installCert      -- Installiert das Zertifizierungsstellenzertifikat.
+  -renewCert        -- Erneuert das Zertifizierungsstellenzertifikat.
+
+  -schema           -- Bildet das Zertifikatschema ab.
+  -view             -- Bildet die Zertifikatansicht ab.
+  -deleterow        -- Löscht die Serverdatenbankreihe.
+
+  -backup           -- Sichert die Zertifikatdienste.
+  -backupDB         -- Sichert die Zertifikatdienste-Datenbank.
+  -backupKey        -- Sichert Dienstezertifikat und privaten Schlüssel.
+  -restore          -- Stellt die Zertifikatdienste wieder her.
+  -restoreDB        -- Stellt die Zertifikatdienste-Datenbank wieder her.
+  -restoreKey       -- Stellt Dienstezertifikat und priv. Schlüssel wieder her.
+  -dynamicfilelist  -- Zeigt eine dynamische Dateiliste an.
+  -databaselocations -- Zeigt den Datenbankpfad an.
+  -hashfile         -- Generiert den krypto. Hash einer Datei und zeigt ihn an.
+
+  -store            -- Bildet Zertifikatspeicher ab.
+  -addstore         -- Fügt dem Speicher ein Zertifikat hinzu.
+  -delstore         -- Löscht ein Zertifikat aus dem Speicher.
+  -verifystore      -- Verifiziert ein Zertifikat im Speicher.
+  -repairstore      -- Zertifikat KeyProvInfo in Speicher reparieren
+  -viewstore        -- Bildet Zertifikatspeicher ab.
+  -viewdelstore     -- Löscht ein Zertifikat aus dem Speicher.
+
+  -dsPublish        -- Veröffentlicht Zertifikat bzw. Sperrliste in AD.
+
+  -Template         -- Zeigt Vorlagen an.
+  -TemplateCAs      -- Zertifizierungsstellen für Vorlage anzeigen
+  -CATemplates      -- Vorlagen für Zertifizierungsstellen anzeigen
+  -URLCache         -- Zeigt URL-Cacheeinsträge an oder löscht diese.
+  -pulse            -- Impuls Autoanmeldungsereignisse
+  -MachineInfo      -- Zeigt Verzeichnisdienst-Objektinformationen an.
+  -DCInfo           -- DC-Informationen anzeigen
+  -EntInfo          -- Unternehmensinformationen anzeigen
+  -TCAInfo          -- Zertifizierungsstelleninformationen anzeigen
+  -SCInfo           -- Smartcard-Informationen anzeigen
+
+  -verifykeys       -- Verifiziert das öffentlich-private Schlüsselpaar.
+  -verify           -- Verifiziert Zertifikat, Zertifikatsperrliste oder Kette.
+  -sign             -- Signiert die Sperrliste bzw. das Zertifikat erneut.
+
+  -vroot            -- Erstellt/löscht virtuelle Webstammverz. und Freigaben.
+  -oid              -- Zeigt Namen der Obj.-kennung an bzw. legt ihn fest.
+  -error            -- Zeigt den Meldungstext des Fehlercodes an.
+  -getreg           -- Zeigt den Registrierungswert an.
+  -setreg           -- Legt den Registrierungswert fest.
+  -delreg           -- Löscht den Registrierungswert.
+
+  -ImportKMS        -- Importiert Benutzers. und Z. zum Archivieren in die DB.
+  -ImportCert       -- Importiert eine Zertifikatdatei in eine Datenbank.
+  -GetKey           -- Ruft Wiederherst.-blob des archiv. priv. Schlüssels ab.
+  -RecoverKey       -- Stellt den archivierten privaten Schlüssel wieder her.
+  -MergePFX         -- Führt PFX-Dateien zusammen.
+  -ConvertEPF       -- Konvertiert PFX-Dateien in eine EPF-Datei.
+  -?                -- Zeigt diese Syntaxmeldung an.
+
+Syntax:
+  CertUtil [Opt.] [-dump]
+  CertUtil [Opt.] [-dump] Datei
+  Bildet Konfigurationsinformationen oder -dateien ab.
+    [-f] [-split] [-p Kennwort] [-t Zeitlimit]
+
+  CertUtil [Opt.] -decodehex Eingabedatei Ausgabedatei
+  Decodiert eine hexadezimal-codierte Datei.
+    [-f]
+
+  CertUtil [Opt.] -decode Eingabedatei Ausgabedatei
+  Decodiert eine Base64-codierte Datei.
+    [-f]
+
+  CertUtil [Opt.] -encode Eingabedatei Ausgabedatei
+  Codiert eine Datei mit Base64.
+    [-f]
+
+  CertUtil [Opt.] -deny Anford.-kennung
+  Verweigert die ausstehende Anforderung.
+    [-config Computername\Zertifizierungsstellenname     ]
+
+  CertUtil [Opt.] -resubmit Anford.-kennung
+  Übermittelt die ausstehende Anforderung erneut.
+    [-config Computername\Zertifizierungsstellenname     ]
+
+  CertUtil [Opt.] -setattributes Anford.-kennung Attribute
+  Legt Attribute für die ausstehende Anforderung fest.
+    Anforderungskennung -- numerische ID einer ausstehenden Anforderung
+    AttributeString -- Name-Wert-Paare von Anforderungsattributen
+            Namen und Werte sind durch Kommas getrennt.
+            Mehrere Name-Wert-Paare werden durch Zeilenumbruch getrennt.
+            Beispiel: "ZertifikatVorlage:Benutzer\nEMail:User@Domain.com"
+            Jede Folge von "\n" wird in Zeilenumbruchtrenner umgewandelt.
+    [-config Computername\Zertifizierungsstellenname     ]
+
+  CertUtil [Opt.] -setextension Anford.-kennung Erweiterungsname Flags {Lang | Datum | Zeichenkette | @InDatei}
+  Legt Erweiterung für die ausstehende Anforderung fest.
+    Anforderungskennung -- numerische Kennung einer ausstehenden Anforderung
+    Erweiterungsname    -- Zeichenfolge mit der Objektkennung der Erweiterung
+    Flags -- 0 ist empfohlen. 1 macht die Erweiterung kritisch,
+    2 deaktiviert sie, 3 bewirkt beides.
+    Falls der letzte Parameter eine Zahl ist, wird er als "Long" interpretiert.
+    Falls er als Datum analysiert werden kann, wird er als Datum interpretiert.
+    Falls er mit "@" beginnt, ist der hintere Teil ein Dateiname für eine Hex-Abbilddatei (Binärdaten oder ASCII-Text).
+    Sonst wird er als Zeichenfolge gewertet.
+    [-config Computername\Zertifizierungsstellenname     ]
+
+  CertUtil [Opt.] -revoke Seriennummer [Grund]
+  Sperrt das Zertifikat.
+    Seriennummer -- zu sperrende Zertifikatseriennumer
+    Grund -- numerische oder symbolische Angabe des Sperrungsgrundes:
+            0: CRL_REASON_UNSPECIFIED -- nicht festgelegt (Standard)
+            1: CRL_REASON_KEY_COMPROMISE -- Schlüsselkompromiss
+            2: CRL_REASON_CA_COMPROMISE -- Zertifizierungsstellenkompromiss
+            3: CRL_REASON_AFFILIATION_CHANGED -- Zuordnung geändert
+            4: CRL_REASON_SUPERSEDED -- Abgelöst
+            5: CRL_REASON_CESSATION_OF_OPERATION -- Beendigung des Vorgangs
+            6: CRL_REASON_CERTIFICATE_HOLD -- Zertifikat blockiert
+            8: CRL_REASON_REMOVE_FROM_CRL -- Aus Zertifikatsperrliste entfernen
+            -1: Unrevoke -- Sperrung aufheben
+    [-config Computername\Zertifizierungsstellenname     ]
+
+  CertUtil [Opt.] -isvalid Seriennummer | Zert.-Hash
+  Zeigt die aktuelle Zertifikatdisposition an.
+    [-config Computername\Zertifizierungsstellenname     ]
+
+  CertUtil [Opt.] -getconfig
+  Ermittelt die Standardkonfiguration.
+    [-config Computername\Zertifizierungsstellenname     ]
+
+  CertUtil [Opt.] -ping
+  Sendet Signal z. Anf.-schnittst. der Zertifikatdienste.
+    [-config Computername\Zertifizierungsstellenname     ]
+
+  CertUtil [Opt.] -pingadmin
+  Sendet Signal z. Verw.-schnittst. der Zertifikatdienste.
+    [-config Computername\Zertifizierungsstellenname     ]
+
+  CertUtil [Opt.] -CAInfo [Infoname [Index | Fehlercode]]
+  Zertifizierungsstellen-Informationen anzeigen
+    Infoname   -- gibt die Eigenschaft der anzuzeigenden Zertifizierungsstelle
+                  an (siehe unten)
+                  "*" für alle Eigenschaften verwenden
+    Index      -- Eigenschaftsindex, bei Null beginnend, optional
+    Fehlercode -- numerische Fehlercodeangabe
+    [-f] [-split] [-config Computername\Zertifizierungsstellenname     ]
+
+    Argumentsyntax von Infoname:
+	file -- Dateiversion
+	product -- Produktversion
+	exitcount -- Beendigungsmodulanzahl
+	exit [Index] -- Beendigungsmodulbeschreibung
+	policy -- Richtlinienmodulbeschreibung
+	name -- Name
+	sanitizedname -- Sicherer Zertifizierungsstellenname
+	dsname -- Sicherer Kurzname der Zertifizierungsstelle (DS-Name)
+	sharedfolder -- Freigegebener Ordner
+	error1 Fehlercode -- Fehlermeldungstext
+	error2 Fehlercode -- Fehlermeldungstext und Fehlercode
+	type -- Zertifizierungsstellentyp
+	info -- Zertifizierungsstelleninformationen
+	parent -- Übergeordnete Stelle
+	certcount -- Zertifizierungsstellen-Zertifikatanzahl
+	xchgcount -- Zertifizierungsstellen-Austauschzertifikatanzahl
+	kracount -- Anzahl KRA-Zertifikate
+	kraused -- Anzahl verwendeter KRA-Zertifikate
+	propidmax -- Maximale PropID der Zertifizierungsstelle
+	certstate [Index] -- Zertifizierungsstellenzertifikat
+	certversion [Index] -- Zertifizierungsstellenzertifikatversion
+	certstatuscode [Index] -- Überprüfungsstatus des Zertifizierungsstellenzertifikats
+	crlstate [Index] -- Zertifikatsperrliste
+	krastate [Index] -- KRA-Zertifikat
+	crossstate+ [Index] -- Vorwärts-Kreuzzertifikat
+	crossstate- [Index] -- Rückwärts-Kreuzzertifikat
+	cert [Index] -- Zertifizierungsstellenzertifikat
+	certchain [Index] -- Zertifizierungsstellen-Zertifikatkette
+	certcrlchain [Index] -- Zertifizierungsstellen-Zertifikatkette mit Sperrlisten
+	xchg [Index] -- Zertifizierungsstellen-Austauschzertifikat
+	xchgchain [Index] -- Zertifizierungsstellen-Austauschzertifikatkette
+	xchgcrlchain [Index] -- Zertifizierungsstellen-Austauschzertifikatkette mit Sperrlisten
+	kra [Index] -- KRA-Zertifikat
+	cross+ [Index] -- Vorwärts-Kreuzzertifikat
+	cross- [Index] -- Rückwärts-Kreuzzertifikat
+	crl [Index] -- Basissperrliste
+	deltacrl [Index] -- Deltasperrliste
+	crlstatus [Index] -- Veröffentlichungsstatus der Sperrliste
+	deltacrlstatus [Index] -- Veröffentlichungsstatus der Deltasperrliste
+	dns -- DNS-Name
+	role -- Rollentrennung
+	ads -- Advanced Server
+	templates -- Vorlagen
+
+  CertUtil [Opt.] -ca.cert AusgStellenZertifikatdatei [Index]
+  Ruft das Zertifizierungsstellenzertifikat ab.
+    AusgabeZertStZertDatei -- Ausgabedatei
+    Index -- Index für Zertifizierungstellenzertifikat-Erneuerung
+             (Standard: letzter Index)
+    [-f] [-split] [-config Computername\Zertifizierungsstellenname     ]
+
+  CertUtil [Opt.] -ca.chain AusgStellenAustauschKettendatei [Index]
+  Ruft die Zertifizierungsstellen-Zertifikatkette ab.
+    AusgabeZertStZertKetteDatei -- Ausgabedatei
+    Index -- Index für Zertifizierungstellenzertifikat-Erneuerung
+             (Standard: letzter Index)
+    [-f] [-split] [-config Computername\Zertifizierungsstellenname     ]
+
+  CertUtil [Opt.] -GetCRL Ausgabedatei [Index] [delta]
+  Ruft die Sperrliste ab.
+    Index -- Sperrlistenindex oder Schlüsselindex
+             (Standardwert ist die Sperrliste für den neuesten Schlüssel)
+    delta -- Deltasperrliste (Standardwert ist Basissperrliste)
+    [-f] [-split] [-config Computername\Zertifizierungsstellenname     ]
+
+  CertUtil [Opt.] -CRL [tt:hh | republish] [delta]
+  Veröffentlicht neue Sperrlisten [bzw. nur Deltasperrl.].
+    dd:hh -- neuer Gültigkeitszeitraum der Sperrliste in Tagen und Stunden
+    republish -- Veröffentlicht die neueste Sperrliste erneut
+    delta -- Nur Deltasperrliste (Standardwert ist Basis- und Deltasperrliste)
+    [-split] [-config Computername\Zertifizierungsstellenname     ]
+
+  CertUtil [Opt.] -shutdown
+  Fährt die Zertifikatdienste herunter.
+    [-config Computername\Zertifizierungsstellenname     ]
+
+  CertUtil [Opt.] -installCert [Stellenzertifikatdatei]
+  Installiert das Zertifizierungsstellenzertifikat.
+    [-f] [-silent] [-config Computername\Zertifizierungsstellenname     ]
+
+  CertUtil [Opt.] -renewCert [ReuseKeys] [Computer\Übergeord. ZS]
+  Erneuert das Zertifizierungsstellenzertifikat.
+    Mit -f wird eine ausstehende Erneuerungsanforderung ignoriert und eine neue Anforderung generiert.
+    [-f] [-silent] [-config Computername\Zertifizierungsstellenname     ]
+
+  CertUtil [Opt.] -schema [Ext | Attrib | CRL]
+  Bildet das Zertifikatschema ab.
+    Standardwert ist Anforderung und Zertifikattabelle
+    Ext -- Erweiterungstabelle
+    Attrib -- Attributtabelle
+    CRL -- Sperrlistentabelle
+    [-split] [-config Computername\Zertifizierungsstellenname     ]
+
+  CertUtil [Opt.] -view [Queue | Log | LogFail | Revoked | Ext | Attrib | CRL]
+  Bildet die Zertifikatansicht ab.
+    Queue -- Anforderungsschlange
+    Log -- Ausgestellte oder gesperrte Zertifikate,
+          sowie gescheiterte Anforderungen
+    LogFail -- Gescheiterte Anforderungen
+    Revoked -- Gesperrte Zertifikate
+    Ext -- Erweiterungstabelle
+    Attrib -- Attributtabelle
+    CRL -- Sperrlistentabelle
+
+    Spalte "StatusCode" für alle Einträge anzeigen:
+       -out StatusCode
+    Alle Spalten für den letzten Eintrag anzeigen:
+       -restrict "Anforderungskennung==$"
+    Anforderungskennung/Disposition für 3 Anforderungen anzeigen:
+       -restrict "AnfKennung>=37,AnfKennung<40" -out "AnfKennung,Disposition"
+
+    Reihenkennung und Sperrlistennummern für alle Basissperrlisten anzeigen:
+       -restrict "SperrlMinBasis=0" -out "SperrlReihenkennung,SperrlNummer" CRL
+    Basissperrliste Nummer 3 anzeigen:
+       -v -restrict "SperrlMinBasis=0,SperrlNummer=3" -out "SperrlRoh" CRL
+    Gesamte Sperrlistentabelle anzeigen:
+        CRL
+    [-silent] [-split] [-config Computername\Zertifizierungsstellenname     ] [-restrict Einschränkungsliste] [-out Spaltenliste]
+
+  CertUtil [Opt.] -deleterow Reihenkennung | Datum [Request | Cert | Ext | Attrib | CRL]
+  Löscht die Serverdatenbankreihe.
+    Request -- Gescheiterte und ausstehende Anforderungen (Auflösungsdatum)
+    Cert --  Ausgestellte und gesperrte Zertifikate (Ablaufdatum)
+    Ext -- Erweiterungstabelle
+    Attrib -- Attributtabelle
+    CRL -- Sperrlistentabelle (Ablaufdatum)
+
+    Gescheiterte/ausstehende Anforderungen löschen, die am 22. Januar 2001 geändert wurden:
+        1/22/2001 Request
+    Alle Zertifikate löschen, die am 22. Januar 2001 abgelaufen sind:
+        1/22/2001 Cert
+    Löschen der Zertifikatreihe, Attribute und Erweiterungen von Anforderung 37:
+        37
+    Sperrlisten löschen, die am 22. Januar 2001 abgelaufen sind:
+        1/22/2001 CRL
+    [-f] [-config Computername\Zertifizierungsstellenname     ]
+
+  CertUtil [Opt.] -backup Sicherungsverzeichnis [Incremental] [KeepLog]
+  Sichert die Zertifikatdienste.
+    SicherungsVerz -- Sicherungsverzeichnis zum Speichern von Daten
+    Incremental -- nur inkrementelle Sicherung durchführen (Standard: vollst. Sicherung)
+    KeepLog -- Datenbankprotokolldateien beibehalten (Standard: Protokoll abschneiden)
+    [-f] [-config Computername\Zertifizierungsstellenname     ] [-p Kennwort]
+
+  CertUtil [Opt.] -backupDB Sicherungsverz. [Incremental] [KeepLog]
+  Sichert die Zertifikatdienste-Datenbank.
+    SicherungsVerz -- Sicherungsverzeichnis zum Speichern von Datenbankdateien
+    Incremental -- nur inkrementelle Sicherung (Standard: vollständige Sicherung)
+    KeepLog -- Datenbankprotokolldateien beibehalten (Standard: Protokoll abschneiden)
+    [-f] [-config Computername\Zertifizierungsstellenname     ]
+
+  CertUtil [Opt.] -backupKey Sicherungsverzeichnis
+  Sichert Dienstezertifikat und privaten Schlüssel.
+    Sicherungsverzeichnis -- Sicherung der PFX-Datei
+    [-f] [-config Computername\Zertifizierungsstellenname     ] [-p Kennwort] [-t Zeitlimit]
+
+  CertUtil [Opt.] -restore Sicherungsverzeichnis
+  Stellt die Zertifikatdienste wieder her.
+    Sicherungsverzeichnis -- für wiederherzustellende Daten
+    [-f] [-config Computername\Zertifizierungsstellenname     ] [-p Kennwort]
+
+  CertUtil [Opt.] -restoreDB Sicherungsverzeichnis
+  Stellt die Zertifikatdienste-Datenbank wieder her.
+    Sicherungsverzeichnis -- für wiederherzustellende Daten
+    [-f] [-config Computername\Zertifizierungsstellenname     ]
+
+  CertUtil [Opt.] -restoreKey Sicherungsverz. | PFX-Datei
+  Stellt Dienstezertifikat und priv. Schlüssel wieder her.
+    SicherungsVerz -- Sicherungsverzeichnis mit wiederherzustellender PFX-Datei
+    PFXDatei -- wiederherzustellende PFX-Datei
+    [-f] [-config Computername\Zertifizierungsstellenname     ] [-p Kennwort]
+
+  CertUtil [Opt.] -dynamicfilelist
+  Zeigt eine dynamische Dateiliste an.
+    [-config Computername\Zertifizierungsstellenname     ]
+
+  CertUtil [Opt.] -databaselocations
+  Zeigt den Datenbankpfad an.
+    [-config Computername\Zertifizierungsstellenname     ]
+
+  CertUtil [Opt.] -hashfile Eingabedatei
+  Generiert den krypto. Hash einer Datei und zeigt ihn an.
+
+  CertUtil [Opt.] -store [Zertifikatspeichername [Zert.-kennung [Ausgabedatei]]]
+  Bildet Zertifikatspeicher ab.
+429.450.0: 0x8007003a (WIN32: 58)
+    ZertSpeicherName -- Name des Zertifikatspeichers. Beispiele:
+            "My", "CA" (Standard), "Root",
+
+            "ldap:///CN=Certification Authorities,CN=Public Key Services,CN=Services,CN=Configuration,DC=...?cACertificate?one?objectClass=certificationAuthority" (Stammzertifikate anzeigen)
+
+            "ldap:///CN=ZertifizierungsstellenName,CN=Certification Authorities,CN=Public Key Services,CN=Services,CN=Configuration,DC=...?cACertificate?base?objectClass=certificationAuthority" (Stammzertifikate verändern)
+
+            "ldap:///CN=ZertifizierungsstellenName,CN=ComputerName,CN=CDP,CN=Public Key Services,CN=Services,CN=Configuration,DC=...?certificateRevocationList?base?objectClass=cRLDistributionPoint" (Sperrlisten anzeigen)
+
+            "ldap:///CN=NTAuthCertificates,CN=Public Key Services,CN=Services,CN=Configuration,DC=..." (Unternehmens-Zertifizierungsstellenzertifikate)
+
+    ZertKennung -- Zertifikat- oder Sperrlistentreffertoken.  Dies kann
+            eine Seriennummer sein,
+            ein SHA-1-Zertifikat, eine Sperrliste,
+            eine Zertifikatvertrauensliste oder ein öffentlicher Zertifikathash,
+            ein numerischer Zertifikatindex (.0, .1, usw.),
+            ein numerischer Sperrlistenindex (.0, .1, usw.),
+            ein numerischer Zertifikatvertrauenslistenindex (..0, ..1, usw.),
+            ein allgemeiner Zertifikatantragstellername,
+            ein allgemeiner Sperrlistenausstellername.
+            Mehrfachtreffer sind möglich.
+    Ausgabedatei -- Datei für Speicherung passender Zertifikate
+    -user Für Zugriff auf Benutzerspeicher anstelle des Computerspeichers
+    -enterprise Für Zugriff auf Unternehmenscomputerspeicher
+
+    Beispiele:
+    -enterprise NTAuth
+    -enterprise Root 37
+    -user My 26e0aaaf000000000004
+    CA .11
+    [-f] [-enterprise] [-user] [-split] [-dc Domänencontrollername]
+
+  CertUtil [Opt.] -addstore Zertifikatspeichername Eingabedatei
+  Fügt dem Speicher ein Zertifikat hinzu.
+    ZertSpeicherName -- Name des Zertifikatspeichers.  Siehe -store.
+    Eingabedatei -- Zertifikat- oder Sperrlistendatei,
+                    die dem Speicher hinzugefügt werden soll.
+    [-f] [-enterprise] [-user] [-dc Domänencontrollername]
+
+  CertUtil [Opt.] -delstore Zertifikatspeichername Zert.-kennung
+  Löscht ein Zertifikat aus dem Speicher.
+    ZertSpeicherName -- Name des Zertifikatspeichers.  Siehe -store.
+    ZertKennung -- Zertifikat- oder Sperrlistentreffertoken.  Siehe -store.
+    [-enterprise] [-user] [-dc Domänencontrollername]
+
+  CertUtil [Opt.] -verifystore Zertifikatspeichername [Zert.-kennung]
+  Verifiziert ein Zertifikat im Speicher.
+    ZertSpeicherName -- Name des Zertifikatspeichers.  Siehe -store.
+    ZertKennung -- Zertifikat- oder Sperrlistentreffertoken.  Siehe -store.
+    [-enterprise] [-user] [-split] [-dc Domänencontrollername] [-t Zeitlimit]
+
+  CertUtil [Opt.] -repairstore Zertifikatspeichername Zert.-kennung
+  Zertifikat KeyProvInfo in Speicher reparieren
+    ZertSpeicherName -- Name des Zertifikatspeichers.  Siehe -store.
+    ZertKennung -- Zertifikat- oder Sperrlistentreffertoken.  Siehe -store.
+    [-f] [-enterprise] [-user] [-silent] [-split] [-csp Provider]
+
+  CertUtil [Opt.] -viewstore [Zertifikatspeichername [Zert.-kennung [Ausgabedatei]]]
+  Bildet Zertifikatspeicher ab.
+    ZertSpeicherName -- Name des Zertifikatspeichers. Beispiele:
+            "My", "CA" (Standard), "Root",
+
+            "ldap:///CN=Certification Authorities,CN=Public Key Services,CN=Services,CN=Configuration,DC=...?cACertificate?one?objectClass=certificationAuthority" (Stammzertifikate anzeigen)
+
+            "ldap:///CN=ZertifizierungsstellenName,CN=Certification Authorities,CN=Public Key Services,CN=Services,CN=Configuration,DC=...?cACertificate?base?objectClass=certificationAuthority" (Stammzertifikate verändern)
+
+            "ldap:///CN=ZertifizierungsstellenName,CN=ComputerName,CN=CDP,CN=Public Key Services,CN=Services,CN=Configuration,DC=...?certificateRevocationList?base?objectClass=cRLDistributionPoint" (Sperrlisten anzeigen)
+
+            "ldap:///CN=NTAuthCertificates,CN=Public Key Services,CN=Services,CN=Configuration,DC=..." (Unternehmens-Zertifizierungsstellenzertifikate)
+
+    ZertKennung -- Zertifikat- oder Sperrlistentreffertoken.  Dies kann
+            eine Seriennummer sein,
+            ein SHA-1-Zertifikat, eine Sperrliste,
+            eine Zertifikatvertrauensliste oder ein öffentlicher Zertifikathash,
+            ein numerischer Zertifikatindex (.0, .1, usw.),
+            ein numerischer Sperrlistenindex (.0, .1, usw.),
+            ein numerischer Zertifikatvertrauenslistenindex (..0, ..1, usw.),
+            ein allgemeiner Zertifikatantragstellername,
+            ein allgemeiner Sperrlistenausstellername.
+            Mehrfachtreffer sind möglich.
+    Ausgabedatei -- Datei für Speicherung passender Zertifikate
+    -user Für Zugriff auf Benutzerspeicher anstelle des Computerspeichers
+    -enterprise Für Zugriff auf Unternehmenscomputerspeicher
+
+    Beispiele:
+    -enterprise NTAuth
+    -enterprise Root 37
+    -user My 26e0aaaf000000000004
+    CA .11
+    [-f] [-enterprise] [-user] [-dc Domänencontrollername]
+
+  CertUtil [Opt.] -viewdelstore [Zertifikatspeichername [Zert.-kennung [Ausgabedatei]]]
+  Löscht ein Zertifikat aus dem Speicher.
+    ZertSpeicherName -- Name des Zertifikatspeichers. Beispiele:
+            "My", "CA" (Standard), "Root",
+
+            "ldap:///CN=Certification Authorities,CN=Public Key Services,CN=Services,CN=Configuration,DC=...?cACertificate?one?objectClass=certificationAuthority" (Stammzertifikate anzeigen)
+
+            "ldap:///CN=ZertifizierungsstellenName,CN=Certification Authorities,CN=Public Key Services,CN=Services,CN=Configuration,DC=...?cACertificate?base?objectClass=certificationAuthority" (Stammzertifikate verändern)
+
+            "ldap:///CN=ZertifizierungsstellenName,CN=ComputerName,CN=CDP,CN=Public Key Services,CN=Services,CN=Configuration,DC=...?certificateRevocationList?base?objectClass=cRLDistributionPoint" (Sperrlisten anzeigen)
+
+            "ldap:///CN=NTAuthCertificates,CN=Public Key Services,CN=Services,CN=Configuration,DC=..." (Unternehmens-Zertifizierungsstellenzertifikate)
+
+    ZertKennung -- Zertifikat- oder Sperrlistentreffertoken.  Dies kann
+            eine Seriennummer sein,
+            ein SHA-1-Zertifikat, eine Sperrliste,
+            eine Zertifikatvertrauensliste oder ein öffentlicher Zertifikathash,
+            ein numerischer Zertifikatindex (.0, .1, usw.),
+            ein numerischer Sperrlistenindex (.0, .1, usw.),
+            ein numerischer Zertifikatvertrauenslistenindex (..0, ..1, usw.),
+            ein allgemeiner Zertifikatantragstellername,
+            ein allgemeiner Sperrlistenausstellername.
+            Mehrfachtreffer sind möglich.
+    Ausgabedatei -- Datei für Speicherung passender Zertifikate
+    -user Für Zugriff auf Benutzerspeicher anstelle des Computerspeichers
+    -enterprise Für Zugriff auf Unternehmenscomputerspeicher
+
+    Beispiele:
+    -enterprise NTAuth
+    -enterprise Root 37
+    -user My 26e0aaaf000000000004
+    CA .11
+    [-f] [-enterprise] [-user] [-dc Domänencontrollername]
+
+  CertUtil [Opt.] -dsPublish ZertDatei [NTAuthCA | RootCA | SubCA | CrossCA | KRA | User | Machine]
+  CertUtil [Opt.] -dsPublish Sperrlistendatei [DSCDPContainer [DSCDPCN]]
+  Veröffentlicht Zertifikat bzw. Sperrliste in AD.
+    ZertDatei -- Zertifikatdatei für Veröffentlichung
+    NTAuthCA -- Zertifikat im DS-Unternehmensspeicher veröffentlichen
+    RootCA -- Zertifikat im vertrauenswürdigen DS-Stammspeicher veröffentlichen
+    SubCA -- Zertifizierungsstellenzertifikat in DS-Zertifizierungsstelle
+          veröffentlichen
+    CrossCA -- Kreuzzertifikat in DS-Zertifizierungsstelle veröffentlichen
+    KRA -- Zertifikat im DS-Schlüsselwiederherstellungs-Agent veröffentlichen
+    User -- Zertifikat im Benutzer-DS-Objekt veröffentlichen
+    Machine -- Zertifikat im Computer-DS-Objekt veröffentlichen
+    Sperrlistendatei -- Zertifikatdatei für Veröffentlichung
+    DSCDPContainer   -- DS-CDP-Container-CN, normalerweise der Computername der
+                        Zertifizierungsstelle
+    DSCDPContainer   -- DS-CDP-Objekt-CN, beruht normalerweise auf dem sicheren
+                        Kurznamen der Zertifizierungsstelle und Schlüsselindex
+    Verwenden Sie -f, um das DS-Objekt zu veröffentlichen.
+    [-f] [-user] [-dc Domänencontrollername]
+
+  CertUtil [Opt.] -Template [Vorlage]
+  Zeigt Vorlagen an.
+    [-f] [-user] [-ut] [-mt]
+
+  CertUtil [Opt.] -TemplateCAs Vorlage
+  Zertifizierungsstellen für Vorlage anzeigen
+    [-f] [-user] [-dc Domänencontrollername]
+
+  CertUtil [Opt.] -CATemplates [Vorlage]
+  Vorlagen für Zertifizierungsstellen anzeigen
+    [-f] [-user] [-ut] [-mt] [-config Computername\Zertifizierungsstellenname     ] [-dc Domänencontrollername]
+
+  CertUtil [Opt.] -URLCache [URL | CRL | * [delete]]
+  Zeigt URL-Cacheeinsträge an oder löscht diese.
+    URL -- zwischengespeicherte URL
+    CRL -- Bearbeitet auf allen zwischengespeicherten Sperrlisten nur URLs
+    * -- Arbeitet auf allen zwischengespeicherten URLs
+    delete -- Löscht relevante URLs vom lokalen Computer des aktuellen Benutzers
+    -f für erzwungenen Abruf einer spezifischen URL und Aktualisierung des Zwischenspeichers
+    [-f] [-split]
+
+  CertUtil [Opt.] -pulse
+  Impuls Autoanmeldungsereignisse
+
+  CertUtil [Opt.] -MachineInfo DomainName\MachineName$
+  Zeigt Verzeichnisdienst-Objektinformationen an.
+
+  CertUtil [Opt.] -DCInfo [Verify | DeleteBad | DeleteAll]
+  DC-Informationen anzeigen
+    [-f] [-user] [-urlfetch] [-t Zeitlimit]
+
+  CertUtil [Opt.] -EntInfo DomainName\MachineName$
+  Unternehmensinformationen anzeigen
+    [-f] [-user]
+
+  CertUtil [Opt.] -TCAInfo [DomänenDN | -]
+  Zertifizierungsstelleninformationen anzeigen
+    [-f] [-enterprise] [-user] [-urlfetch] [-dc Domänencontrollername] [-t Zeitlimit]
+
+  CertUtil [Opt.] -SCInfo [Lesername]
+  Smartcard-Informationen anzeigen
+    [-silent] [-split] [-urlfetch] [-t Zeitlimit]
+
+  CertUtil [Opt.] -verifykeys [Schlüsselcontainername StellenZertDatei]
+  Verifiziert das öffentlich-private Schlüsselpaar.
+    SchlüsselContainerName -- Name des Containers mit dem zu überprüfenden
+            Schlüssel. Standardwert: Computerschlüssel.
+            Für Benutzerschlüssel -user verwenden
+    ZSZertDatei -- Datei mit Signierungs- oder Verschlüsselungszertifikat
+    Falls keine Argumente angegeben sind, wird jedes signierende
+            Zertifizierungsstellenzertifikat gegen seinen privaten Schlüssel
+            geprüft.
+    Diese Prüfung ist nur bei lokalen Zertifizierungsstellen oder Schlüsseln möglich.
+    [-f] [-user] [-silent] [-config Computername\Zertifizierungsstellenname     ]
+
+  CertUtil [Opt.] -verify ZertDatei [AnwdgRichtlListe | - [AusstellungsRichtlListe]]
+  CertUtil [Opt.] -verify ZertDatei [StellenZertDatei [KreuzZSZertDatei]]
+  CertUtil [Opt.] -verify SperrListDatei StellenZertDatei [AusgestelltZertDatei]
+  CertUtil [Opt.] -verify SperrListDatei StellenZertDatei [SperrlistenDifferenzDatei]
+  Verifiziert Zertifikat, Zertifikatsperrliste oder Kette.
+    ZertDatei -- zu überprüfende Zertifikatdatei
+    AnwRichtlinienListe -- Liste der benötigten Anwendungsrichtlinien-
+            objektkennungen, durch Kommas getrennt, optional
+    AusstellRichtlinienListe -- Liste der benötigten Ausstellungsrichtlinien-
+            objektkennungen, durch Kommas getrennt, optional
+
+    ZSZertDatei -- Herausgabezertifikat für die Überprüfung, optional
+    KreuzZSZertDatei    -- Zertifikat, von ZertDatei kreuzzertifiziert, optional
+
+    Sperrlistendatei    -- zu überprüfende Sperrliste
+    AusstellZertDatei   -- Herausgabezertifikat, durch Sperrlistendatei
+                           abgedeckt, optional
+    DeltasperrlisteDatei -- Deltasperrliste, optional
+
+    Falls AnwRichtlinienListe angegeben ist, wird der Kettenaufbau auf
+            für die angegebenen Anwendungsrichtlinien gültige Ketten begrenzt.
+    Falls AusstellRichtlinienListe angegeben ist, wird der Kettenaufbau auf
+            für die angegebenen Ausstellungsrichtlinien gültige Ketten begrenzt.
+
+    Falls ZSZertDatei angegeben ist, werden die Felder in ZSZertDatei
+            gegen ZertDatei oder SperrlistenDatei geprüft.
+    Falls ZSZertDatei nicht angegeben ist, wird ZertDatei zur Aufbau einer
+            vollständigen Kette verwendet.
+    Falls sowohl ZSZertDatei als auch KreuzZSZertDatei angegeben sind,
+            werden ZSZertDatei und KreuzZSZertDatei gegen ZertDatei geprüft.
+
+    Falls AusstellZertDatei angegeben wird, werden die Felder in
+            AusstelltZertDatei gegen SperrlisteDatei geprüft.
+    Falls DeltaSperrlisteDatei angegeben ist, werden die Felder in
+            DeltaSperrlisteDatei gegen SperrlisteDatei geprüft.
+    [-f] [-enterprise] [-user] [-silent] [-split] [-urlfetch] [-t Zeitlimit]
+
+  CertUtil [Opt.] -sign Eingabedatei|Seriennummer Ausgabedatei [tt:hh] [+Seriennummernliste | -Seriennummernliste | -Objektkennungsliste]
+  Signiert die Sperrliste bzw. das Zertifikat erneut.
+    Eingabedatei -- Zertifikat- oder Sperrlistendatei, die verändert oder neu
+                    signiert werden soll
+    Seriennummer -- Seriennummer des zu erstellenden Zertifikats
+             Gültigkeitszeitraum und Listenoptionen dürfen nicht vorhanden sein.
+    Ausgabedatei -- modifizierte Zertifikat- oder Sperrlistenausgabedatei
+    dd:hh -- neuer Gültigkeitszeitraum in Tagen und Stunden
+             (Standardwert: bestehender Zeitraum)
+             Die Ausgabedatei ist beim Start zum jetzigen Zeitpunkt gültig.
+    Seriennummerliste   -- Liste von hinzuzufügenden oder zu entfernenden
+                           Seriennummern, durch Kommas getrennt
+    Objektkennungsliste -- Liste zu löschender Objektkennungen, durch Kommas
+                           getrennt
+    Durch ein Minuszeichen werden Seriennummern und Erweiterungen gelöscht.
+    Durch ein Pluszeichen werden Seriennummern zu einer Sperrliste hinzugefügt.
+    Wenn Einträge von einer Sperrliste gelöscht werden, kann die Liste
+    sowohl Seriennummern als auch Objektkennungen enthalten.
+    [-f] [-silent]
+
+  CertUtil [Opt.] -vroot [delete]
+  Erstellt/löscht virtuelle Webstammverz. und Freigaben.
+
+  CertUtil [Opt.] -oid Objektkennung [Anzeigename | delete [Sprachkennung [Typ]]]
+  Zeigt Namen der Obj.-kennung an bzw. legt ihn fest.
+    Objektkennung -- Objektkennung, die angezeigt oder an den
+                     Anzeigenamen angehängt wird
+    Anzeigename   -- Anzeigename zur Speicherung im DS
+    delete  -- löscht Anzeigenamen
+    Sprachkennung -- Sprachkennung (Standard: aktuelle Kennung) 1031)
+    Typ -- Zu erstellender DS-Objekttyp:
+           1 für Vorlage (Standard),
+           2 für Ausstellungsrichtlinie,
+           3 für Anwendungsrichtlinie
+    Verwenden Sie -f zur Erstellung des DS-Objekts.
+    [-f]
+
+  CertUtil [Opt.] -error Fehlercode
+  Zeigt den Meldungstext des Fehlercodes an.
+
+  CertUtil [Opt.] -getreg [{ca|restore|policy|exit|template}\[ProgId\]][Reg.-wertname]
+  Zeigt den Registrierungswert an.
+    ca -- Verwendet den Registrierungsschlüssel der Zertifizierungsstelle
+    restore -- Verwendet den Wiederherstellungs-Registrierungsschlüssel d. Zert.-St.
+    policy -- Verwendet den Registrierungsschlüssel des Richtlinienmoduls
+    exit -- Verwendet zuerst den Registrierungsschlüssel des Beendigungsmoduls
+    template -- Verwendet Vorlagen-Registrierungsschlüssel (-user f. Benutzervorlagen)
+    ProgId -- Verwendet Richtlinie oder Programmmkennung des Beendigungsmoduls
+          (Unterschlüsselname)
+    RegWertName -- Registrierungswertname ("Name*" für Suche mit Präfix)
+    Wert -- Neuer Registrierungswert (Zahl oder Zeichenfolge)
+            Wenn eine Zahl angegeben wird, die mit "+" oder "-" beginnt, werden
+            die Bits des neuen Wertes zum Setzen oder Löschen des bestehenden
+            Wertes verwendet.
+            Wenn eine Zeichenfolge angegeben wird, die mit "+" oder "-" beginnt,
+            und der bestehende Wert vom Typ REG_MULTI_SZ ist, wird die
+            Zeichenfolge zum bestehenden Wert hinzugefügt oder aus ihm gelöscht.
+
+            Um einen REG_MULTI_SZ-Wert zu erstellen, hängen Sie ein "\n"
+            hinten an die Zeichenfolge an.
+    [-user] [-config Computername\Zertifizierungsstellenname     ]
+
+  CertUtil [Opt.] -setreg [{ca|restore|policy|exit|template}\[ProgId\]]Reg.-wertname Wert
+  Legt den Registrierungswert fest.
+    ca -- Verwendet den Registrierungsschlüssel der Zertifizierungsstelle
+    restore -- Verwendet den Wiederherstellungs-Registrierungsschlüssel d. Zert.-St.
+    policy -- Verwendet den Registrierungsschlüssel des Richtlinienmoduls
+    exit -- Verwendet zuerst den Registrierungsschlüssel des Beendigungsmoduls
+    template -- Verwendet Vorlagen-Registrierungsschlüssel (-user f. Benutzervorlagen)
+    ProgId -- Verwendet Richtlinie oder Programmmkennung des Beendigungsmoduls
+          (Unterschlüsselname)
+    RegWertName -- Registrierungswertname ("Name*" für Suche mit Präfix)
+    Wert -- Neuer Registrierungswert (Zahl oder Zeichenfolge)
+            Wenn eine Zahl angegeben wird, die mit "+" oder "-" beginnt, werden
+            die Bits des neuen Wertes zum Setzen oder Löschen des bestehenden
+            Wertes verwendet.
+            Wenn eine Zeichenfolge angegeben wird, die mit "+" oder "-" beginnt,
+            und der bestehende Wert vom Typ REG_MULTI_SZ ist, wird die
+            Zeichenfolge zum bestehenden Wert hinzugefügt oder aus ihm gelöscht.
+
+            Um einen REG_MULTI_SZ-Wert zu erstellen, hängen Sie ein "\n"
+            hinten an die Zeichenfolge an.
+    [-f] [-user] [-config Computername\Zertifizierungsstellenname     ]
+
+  CertUtil [Opt.] -delreg [{ca|restore|policy|exit|template}\[ProgId\]][Reg.-wertname]
+  Löscht den Registrierungswert.
+    ca -- Verwendet den Registrierungsschlüssel der Zertifizierungsstelle
+    restore -- Verwendet den Wiederherstellungs-Registrierungsschlüssel d. Zert.-St.
+    policy -- Verwendet den Registrierungsschlüssel des Richtlinienmoduls
+    exit -- Verwendet zuerst den Registrierungsschlüssel des Beendigungsmoduls
+    template -- Verwendet Vorlagen-Registrierungsschlüssel (-user f. Benutzervorlagen)
+    ProgId -- Verwendet Richtlinie oder Programmmkennung des Beendigungsmoduls
+          (Unterschlüsselname)
+    RegWertName -- Registrierungswertname ("Name*" für Suche mit Präfix)
+    Wert -- Neuer Registrierungswert (Zahl oder Zeichenfolge)
+            Wenn eine Zahl angegeben wird, die mit "+" oder "-" beginnt, werden
+            die Bits des neuen Wertes zum Setzen oder Löschen des bestehenden
+            Wertes verwendet.
+            Wenn eine Zeichenfolge angegeben wird, die mit "+" oder "-" beginnt,
+            und der bestehende Wert vom Typ REG_MULTI_SZ ist, wird die
+            Zeichenfolge zum bestehenden Wert hinzugefügt oder aus ihm gelöscht.
+
+            Um einen REG_MULTI_SZ-Wert zu erstellen, hängen Sie ein "\n"
+            hinten an die Zeichenfolge an.
+    [-f] [-user] [-config Computername\Zertifizierungsstellenname     ]
+
+  CertUtil [Opt.] -ImportKMS Benutzerschlüsselzertifikatdatei [Zert.-kennung]
+  Importiert Benutzers. und Z. zum Archivieren in die DB.
+    BenutzerSchlüsselUndZertDatei -- Datendatei mit zu archivierenden
+    privaten Benutzerschlüsseln und -zertifikaten.  Es kann eine der folgenden sein:
+            Exchange-Schlüsselverwaltungsserver-Exportdatei (KMS)
+            PFX-Datei
+            Outlook-Schlüsselexportdatei (EPF)
+    ZertKennung -- KMS-Exportdatei-Entschlüsselungszertifikat-Treffertoken.
+                   Siehe -store.
+    Verwenden Sie -f, um Zertifikate zu importieren, die nicht von der Zertifizierungsstelle ausgestellt wurden.
+    [-f] [-silent] [-split] [-config Computername\Zertifizierungsstellenname     ] [-p Kennwort]
+
+  CertUtil [Opt.] -ImportCert Zertifikatdatei
+  Importiert eine Zertifikatdatei in eine Datenbank.
+    Verwenden Sie -f, um Zertifikate zu importieren, die von der
+    Zertifizierungsstelle nicht ausgestellt wurden.
+    [-f] [-config Computername\Zertifizierungsstellenname     ]
+
+  CertUtil [Opt.] -GetKey Suchtoken [Wiederherst.-Blobausgabedatei]
+  Ruft Wiederherst.-blob des archiv. priv. Schlüssels ab.
+    SuchToken -- Zur Auswahl der wiederherzustellenden Schlüssel und Zertifikate
+            Es kann eins der folgenden sein:
+            Zertifikatvorlagenname
+            Zertifikatseriennummer
+            Zertifikat-SHA-1-Hash
+            Antragstellername (Domäne\Benutzer)
+            UPN (benutzer@domaene)
+    WiederherstellungsBlobAusgabeDatei -- Ausgabedatei, die Zertifikatkette und
+            einen zugehörigen privaten Schlüssel enthält, noch verschlüsselt auf
+            einem oder mehreren Agentenzertifikaten.
+    [-f] [-config Computername\Zertifizierungsstellenname     ]
+
+  CertUtil [Opt.] -RecoverKey Wiederherst.-Blobeingabedatei [PFX-Ausgabedatei [Empfängerindex]]
+  Stellt den archivierten privaten Schlüssel wieder her.
+    [-f] [-user] [-split] [-p Kennwort] [-t Zeitlimit]
+
+  CertUtil [Opt.] -MergePFX PFX-Eingabedateiliste PFX-Ausgabedateiliste 
+  Führt PFX-Dateien zusammen.
+    PFXEingabeDateiListe -- Liste von PFX-Eingabedateien, durch Kommas getrennt
+    PFXAusdatei -- PFX-Ausgabedatei
+    Das auf der Befehlszeile angegebene Kennwort ist eine durch Kommas getrennte
+    Kennwortliste. Bei mehr als einem Kennwort wird das zuletzt angegebene
+    für die Augabedatei verwendet. Falls nur ein Kennwort angegeben wird oder
+    wenn das letzte Kennwort "*" ist, wird nach einem Kennwort für die
+    Ausgabedatei gefragt.
+    [-f] [-user] [-split] [-p Kennwort] [-csp Provider]
+
+  CertUtil [Opt.] -ConvertEPF PFXEinDateiListe EPFAusDatei [cast | cast-] [V3ZSZertKennung][,Salt]
+  Konvertiert PFX-Dateien in eine EPF-Datei.
+    PFXEingabeDateiListe -- PFX-Eingabedateiliste, durch Kommas getrennt
+    EPF -- EPF-Ausgabedatei
+    cast -- Verwendet CAST 64-Verschlüsselung
+    cast- -- Verwendet CAST 64-Verschlüsselung (Export)
+    V3ZertStZertKennung -- V3-Zertifizierungsstellen-Zertifikat-Treffertoken
+                           Siehe -store ZertKennung Beschreibung.
+    Salt -- EPF-Ausgabedatei (Salt-Zeichenfolge)
+    Das angegebene Kennwort ist eine durch Kommas getrennte Kennwortliste.
+    Bei mehr als einem Kennwort wird das zuletzt angegebene für die Augabedatei
+    verwendet. Wenn nur ein Kennwort angegeben wird oder wenn das letzte
+    Kennwort "*" ist, wird nach einem Kennwort für die Ausgabedatei gefragt.
+    [-f] [-silent] [-split] [-dc Domänencontrollername] [-p Kennwort] [-csp Provider]
+
+  CertUtil [Opt.] -?
+  Zeigt diese Syntaxmeldung an.
+
+Optionen:
+  -f                -- Erzwingt überschreiben.
+  -enterprise       -- Verwendet den Unternehmensregistrierungs-Zertifikatspeicher auf dem lokalen Computer
+  -user             -- Verwendet HKEY_CURRENT_USER oder Zertifikatspeicher.
+  -ut               -- Benutzervorlagen anzeigen
+  -mt               -- Computervorlagen anzeigen
+  -gmt              -- Zeigt die Uhrzeit in GMT an.
+  -seconds          -- Zeigt die Uhrzeit in Sekunden und Millisekunden an.
+  -silent           -- Verwendet automatisches Flag zum Abrufen des Kryptografiekontexts.
+  -split            -- Teilt eingebettete ASN.1-Elemente auf und speichert diese in Dateien.
+  -v                -- Führt den Vorgang ausführlich aus.
+  -urlfetch         -- AIA-Zertifikate und CDP-Zertifikatsperrliste empfangen und überprüfen
+  -config Computername\Zertifizierungsstellenname      -- Zeichenfolge für Zertifizierungsstelle und Computername
+  -dc Domänencontrollername -- Ziel für einen spezifischen Domänencontroller
+  -restrict Einschränkungsliste -- Kommagetrennte Einschränkungsliste
+  -out Spaltenliste         -- Kommagetrennte Spaltenliste
+  -p Kennwort               -- Kennwort
+  -csp Provider             -- Provider
+  -t Zeitlimit              -- Zeitlimit für URL-Abruf in milliseconds
+
+CertUtil -?              -- Zeigt eine Liste der Befehle an.
+CertUtil -dump -?        -- Zeigt den Hilfetext für den Befehl "dump" an.
+CertUtil -v -?           -- Zeigt alle Hilfetexte für alle Befehle an.
+
+CertUtil: -?-Befehl wurde erfolgreich ausgeführt.
